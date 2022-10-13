@@ -72,7 +72,7 @@ public class KeyExtraction {
         restrictions.add("get");
         restrictions.add("say");
         restrictions.add("take");
-        restrictions.add("thus")
+        restrictions.add("thus");
     }
 
     public void speechTagger(InputStream is) {
