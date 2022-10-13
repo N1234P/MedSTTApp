@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -24,7 +25,9 @@ public class KeywordDisplay extends AppCompatActivity {
     private TextView header;
     private TextView loadingText;
 
-    private CountDownLatch doneSignal = new CountDownLatch(1);
+    private ImageView backArrow;
+
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -38,8 +41,19 @@ public class KeywordDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_keyword_display);
 
         loadingText = (TextView) findViewById(R.id.loading);
+        backArrow = findViewById(R.id.keyBack);
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KeywordDisplay.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         header = (TextView) findViewById(R.id.keyheader);
         header.setVisibility(View.INVISIBLE);
+
         Intent intent = getIntent();
         this.speech = intent.getStringExtra("input");
 
@@ -67,7 +81,6 @@ public class KeywordDisplay extends AppCompatActivity {
                  } catch (IOException e) {
                      e.printStackTrace();
                  }
-
 
                  runOnUiThread(new Runnable() {
                      @Override
