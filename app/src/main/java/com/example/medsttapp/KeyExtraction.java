@@ -69,6 +69,8 @@ public class KeyExtraction {
         restrictions.add("gave");
         restrictions.add("now");
         restrictions.add("later");
+        restrictions.add("get");
+        restrictions.add("say");
     }
 
     public void speechTagger(InputStream is) {
