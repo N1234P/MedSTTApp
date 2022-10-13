@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/stt_background">
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="speak something medical"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:padding="10dp"
+            android:id="@+id/mic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/stt_mic"
+            android:onClick="speak"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/message_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:hint="or type your words here"
+                android:background="@drawable/word_background"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="11dp"
+                android:textColorHint="@color/black"
+                android:shadowColor="@color/black"
+                android:maxWidth="200dip"
+               />
+            <ImageView
+                android:id="@+id/send_message"
+                android:scaleType="centerCrop"
+                android:layout_width="55dp"
+                android:layout_height="20dp"
+                android:src="@drawable/stt_arrow"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp">
+
+            </ImageView>
+
+    </LinearLayout>
+        <TextView
+            android:id="@+id/userspeech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textSize="18sp"
+            android:text=""
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:text=""
+            android:padding="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/confirmation_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:id="@+id/reject_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
