@@ -142,7 +142,7 @@ public class KeywordDisplay extends AppCompatActivity {
                      e.printStackTrace();
                  }
 
-                 // the moment keywords is retrived, we can now modify UI thread and show keywords on screen
+                 // the moment keywords is retrieved, we can now modify UI thread and show keywords on screen
 
                  runOnUiThread(new Runnable() {
                      @RequiresApi(api = Build.VERSION_CODES.N)
