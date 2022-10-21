@@ -49,6 +49,8 @@ import opennlp.tools.parser.ParserFactory;
 import opennlp.tools.parser.ParserModel;
 
 
+// Main Page of the app, this is where the user enters input
+// UI representation - activity_main.xml
 public class MainActivity extends AppCompatActivity {
 
     private TextView prompt;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView reject;
     private ImageView sendMessage;
     private TextView messageInput;
+
 
 
     @Override
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    // This method is called when a user clicks the speech icon
     public void speak(View view) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -148,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "analyzing your results...", Toast.LENGTH_SHORT).show();
     }
 
+    // This is called when speech input stage is finished, let's start
+    // KeywordDisplay
     public void beginActivity(String input) {
         Intent intent = new Intent(MainActivity.this, KeywordDisplay.class);
         intent.putExtra("input", input);
