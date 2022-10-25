@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.Iterator;
 
 import opennlp.tools.cmdline.parser.ParserTool;
 import opennlp.tools.parser.Parse;
@@ -120,8 +121,17 @@ public class KeyExtraction {
             List<String> phrases = Arrays.asList(sample.toString().split(" "));
 
             // find index of "not" or negating keywords right on this line?
-            keyPhrases = removeRestricts(getNLPKeyPhrases(phrases));
+            List<Integer> negatedIndexes = new ArrayList<Integer>();
+            for(int i = 0; i < phrases.size(); i++) {
+                if(phrases.get(i).contains("not")) {
+                    negatedIndexes.add(i);
+                }
+            }
+            System.out.println(negatedIndexes);
+            System.out.println(phrases);
 
+            keyPhrases = removeRestricts(getNLPKeyPhrases(phrases));
+            removeNegation(phrases, negatedIndexes);
 
 
         } catch (IOException e) {
@@ -209,7 +219,33 @@ public class KeyExtraction {
     // of any "not" in keyExtraction (line 121) iterate through
     // keyPhrases and if any keyphrases occur the index right after the "not",
     // remove it from keyPhrases.
-    public void removeNegation() {
+    public void removeNegation(List<String> phrases, List<Integer> negatedIndexes) {
+        // can't have, won't have, don't have
+        // no
+        List<String> phrase_without = new ArrayList<String>();
 
+        // make a copy of phrases to remove annotations
+        for(String s : phrases) {
+            s = s.substring(0, s.length() - 3);
+            phrase_without.add(s);
+        }
+
+        System.out.println(phrase_without);
+
+        // iterate through keyphrases
+        Iterator<String> iterator = keyPhrases.iterator();
+        while(iterator.hasNext()) {
+            String s = iterator.next();
+            System.out.println(s);
+            if(phrase_without.contains(s)) {
+                int index = phrase_without.indexOf(s);
+                if(negatedIndexes.contains(index - 1)) {
+                    iterator.remove();
+                }
+            }
+
+        }
+
+        System.out.println("after negated " + keyPhrases);
     }
 }
