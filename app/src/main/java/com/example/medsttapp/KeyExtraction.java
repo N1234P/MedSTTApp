@@ -226,7 +226,7 @@ public class KeyExtraction {
 
         // make a copy of phrases to remove annotations
         for(String s : phrases) {
-            s = s.substring(0, s.length() - 3);
+            s = s.substring(0, s.lastIndexOf("_"));
             phrase_without.add(s);
         }
 
@@ -236,7 +236,9 @@ public class KeyExtraction {
         Iterator<String> iterator = keyPhrases.iterator();
         while(iterator.hasNext()) {
             String s = iterator.next();
-            System.out.println(s);
+            if(s.contains(" ")) {
+                s = s.substring(0, s.lastIndexOf(" "));
+            }
             if(phrase_without.contains(s)) {
                 int index = phrase_without.indexOf(s);
                 if(negatedIndexes.contains(index - 1)) {

@@ -2,9 +2,11 @@ package com.example.medsttapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -116,6 +118,7 @@ public class KeywordDisplay extends AppCompatActivity {
         cards.add(card8);
 
         cards.forEach(e -> e.setVisibility(View.GONE));
+
     }
 
     /**
@@ -152,12 +155,33 @@ public class KeywordDisplay extends AppCompatActivity {
 
                          List<String> keywordsList = new ArrayList<>(keywords);
                          int i = 0;
-                         while(i < 8 && i < keywordsList.size()) {
 
+                         while(i < 8 && i < keywordsList.size()) {
+                             int j = i;
                              cards.get(i).setText(keywordsList.get(i));
                              cards.get(i).setTypeface(null, Typeface.ITALIC);
                              cards.get(i).setVisibility(View.VISIBLE);
+
+
+
+                             cards.get(i).setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     Intent intent = new Intent(KeywordDisplay.this, MedicalNote.class);
+                                     intent.putExtra("keyword", keywordsList.get(j));
+                                     startActivity(intent);
+                                 }
+                             });
+
+                             SharedPreferences getCounter = getSharedPreferences("counter", 0);
+                             int count = getCounter.getInt(keywordsList.get(i), 0);
+
+                             SharedPreferences.Editor edit = getCounter.edit();
+                             edit.putInt(keywordsList.get(i), count+1);
+                             edit.apply();
                              i++;
+
+
                          }
 
 

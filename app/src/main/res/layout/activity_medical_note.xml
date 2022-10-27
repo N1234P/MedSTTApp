@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MedicalNote"
+    android:background="@drawable/stt_otherbackground"
+    android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/keyBack"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+
+            android:paddingTop="23.5dp"
+
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_gravity="left"
+            android:scaleType="fitEnd"/>
+
+
+            <TextView
+                android:id="@+id/keyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:layout_marginStart="-55dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:text="keyword"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/counter"
+            android:text="Keyword found 0 times"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_gravity="center"/>
+
+
+
+            <EditText
+                android:id="@+id/note"
+                android:layout_marginTop="50dp"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:layout_gravity="center"
+                android:gravity="top"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif"
+
+                android:inputType="textMultiLine"
+                android:hint="Define Keyword"
+                android:textColorHint="@color/black"
+
+                android:background="@drawable/box"
+                android:drawableRight="@drawable/ic_baseline_draw_24"
+                app:boxStrokeColor="@color/black"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+            <Button
+                android:onClick="save"
+                android:layout_marginTop="20dp"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:text="SAVE"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                />
+
+
+
+
+
+</LinearLayout>
