@@ -66,14 +66,23 @@ public class KeyExtraction {
         restrictions.add("why");
 
         // add negations
-        restrictions.add("not"); // need to add negation method for this
+        restrictions.add("not");
         restrictions.add("cant");
+        restrictions.add("shouldnt");
+        restrictions.add("wouldnt");
+        restrictions.add("isnt");
+        restrictions.add("wont");
+        restrictions.add("dont");
+        restrictions.add("didnt");
+        restrictions.add("wasnt");
+        restrictions.add("doesnt");
+        restrictions.add("cannot");
 
         restrictions.add("can");
         restrictions.add("could");
         restrictions.add("give");
         restrictions.add("gave");
-        restrictions.add("gave");
+        // restrictions.add("gave");
         restrictions.add("now");
         restrictions.add("later");
         restrictions.add("get");
@@ -129,28 +138,7 @@ public class KeyExtraction {
             System.out.println(phrases);
 
             keyPhrases = removeRestricts(getNLPKeyPhrases(phrases));
-
-            // find index of "not" or negating keywords right on this line?
-            List<Integer> negatedIndexes = new ArrayList<Integer>();
-            for(int i = 0; i < phrases.size(); i++) {
-                if(phrases.get(i).contains("not") ||
-                    phrases.get(i).contains("cant") ||
-                    phrases.get(i).contains("shouldnt") ||
-                    phrases.get(i).contains("wouldnt") ||
-                    phrases.get(i).contains("isnt") ||
-                        phrases.get(i).contains("wont") ||
-                        phrases.get(i).contains("dont") ||
-                        phrases.get(i).contains("didnt") ||
-                        phrases.get(i).contains("wasnt") ||
-                        phrases.get(i).contains("doesnt") ||
-                        phrases.get(i).contains("cannot")) {
-                    negatedIndexes.add(i);
-                }
-//                if(phrases.get(i).contains("cant")) {
-//                    negatedIndexes.add(i);
-//                }
-            }
-            removeNegation(phrases, negatedIndexes);
+            removeNegation(phrases);
 
 
         } catch (IOException e) {
@@ -169,6 +157,7 @@ public class KeyExtraction {
         int index = 0;
         // pOS contains important NLP keywords that we want to include
         String[] pOS = {"NNPS", "NNP", "NNS", "NN", "VB", "VBG", "VBN", "VBD", "JJ"};
+
         while(index < phrases.size()) {
             String phrase = phrases.get(index);
             for(String p : pOS) {
@@ -240,9 +229,8 @@ public class KeyExtraction {
     /**
      * Removes negated keywords
      * @param phrases           All words filtered by getNLPPhrases
-     * @param negatedIndexes    Indexes that have negation words, like 'not'
      */
-    public void removeNegation(List<String> phrases, List<Integer> negatedIndexes) {
+    public void removeNegation(List<String> phrases) {
         // the phrases without annotations (every word in the speech)
         List<String> phrase_without = new ArrayList<String>();
 
@@ -250,6 +238,34 @@ public class KeyExtraction {
         for(String s : phrases) {
             s = s.substring(0, s.lastIndexOf("_"));
             phrase_without.add(s);
+        }
+
+        // remove 'a' and 'the'
+        Iterator<String> athe = phrase_without.iterator();
+        while(athe.hasNext()) {
+            String a = athe.next();
+            if(a.equals("a") || a.equals("the")) {
+                athe.remove();
+            }
+        }
+        //System.out.println("after removing a, the: " + phrase_without);
+
+        // find index of "not" or negating keywords right on this line?
+        List<Integer> negatedIndexes = new ArrayList<Integer>();
+        for(int i = 0; i < phrase_without.size(); i++) {
+            if(phrase_without.get(i).contains("not") ||
+                    phrase_without.get(i).contains("cant") ||
+                    phrase_without.get(i).contains("shouldnt") ||
+                    phrase_without.get(i).contains("wouldnt") ||
+                    phrase_without.get(i).contains("isnt") ||
+                    phrase_without.get(i).contains("wont") ||
+                    phrase_without.get(i).contains("dont") ||
+                    phrase_without.get(i).contains("didnt") ||
+                    phrase_without.get(i).contains("wasnt") ||
+                    phrase_without.get(i).contains("doesnt") ||
+                    phrase_without.get(i).contains("cannot")) {
+                negatedIndexes.add(i);
+            }
         }
 
         System.out.println(phrase_without);
@@ -267,6 +283,7 @@ public class KeyExtraction {
                 // get index of negated word and remove from keyPhrases
                 // if the negation comes right before the keyPhrase
                 int index = phrase_without.indexOf(s);
+                //System.out.println("A " + phrase_without.get(index));
                 if(negatedIndexes.contains(index - 1)) {
                     iterator.remove();
                 }
@@ -274,6 +291,12 @@ public class KeyExtraction {
                 else if(negatedIndexes.contains(index - 2)) {
                     iterator.remove();
                 }
+                System.out.println(s);
+                // testing to handle something like "I don't have a cold"
+//                else if(negatedIndexes.contains(index - 3) && phrase_without.get(index - 1) == "a") {
+//                    System.out.println("Reached a");
+//                    iterator.remove();
+//                }
             }
 
         }
