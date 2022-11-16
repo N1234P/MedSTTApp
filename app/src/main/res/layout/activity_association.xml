@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Association"
+    android:orientation="vertical"
+    android:background="@drawable/stt_otherbackground">
+
+    <TextView
+        android:id="@+id/association_label"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Define Association For "
+        android:textSize="20dp"
+        android:layout_centerInParent="true"
+
+        android:layout_marginTop="290dp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <EditText
+        android:textColor="@color/black"
+        android:id="@+id/association_message_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+
+        android:gravity="center"
+        android:hint="association has not been defined"
+        android:background="@drawable/association_word_background"
+        android:layout_gravity="center"
+        android:padding="5dp"
+
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/black"
+        android:shadowColor="@color/black"
+        android:maxWidth="200dip"
+        />
+        <ImageView
+            android:id="@+id/association_confirmation"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_check_circle_24"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+</LinearLayout>

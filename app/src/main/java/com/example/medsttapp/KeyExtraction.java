@@ -192,7 +192,7 @@ public class KeyExtraction {
         for(String phrase : Phrases) {
             flag = false;
             for(String restricted : restrictions) {
-                if(phrase.equals(restricted)) {
+                if(phrase.equals(restricted) || phrase.length() > 50) {
                     flag = true;
                     break;
                 }

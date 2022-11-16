@@ -46,6 +46,8 @@ public class KeywordDisplay extends AppCompatActivity {
     private TextView card7;
     private TextView card8;
 
+    private TextView association;
+
     private ImageView backArrow;
 
 
@@ -107,6 +109,7 @@ public class KeywordDisplay extends AppCompatActivity {
         card6 = findViewById(R.id.card6);
         card7 = findViewById(R.id.card7);
         card8 = findViewById(R.id.card8);
+        association = findViewById(R.id.association);
 
         cards.add(card);
         cards.add(card2);
@@ -118,6 +121,8 @@ public class KeywordDisplay extends AppCompatActivity {
         cards.add(card8);
 
         cards.forEach(e -> e.setVisibility(View.GONE));
+        association.setVisibility(View.GONE);
+
 
     }
 
@@ -155,6 +160,17 @@ public class KeywordDisplay extends AppCompatActivity {
 
                          List<String> keywordsList = new ArrayList<>(keywords);
                          int i = 0;
+                         if(keywordsList.size() >= 2) {
+                             association.setVisibility(View.VISIBLE);
+                             association.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     Intent intent = new Intent(KeywordDisplay.this, Association.class);
+                                     intent.putExtra("keywords", String.join(", ", keywordsList));
+                                     startActivity(intent);
+                                 }
+                             });
+                         }
 
                          while(i < 8 && i < keywordsList.size()) {
                              int j = i;
