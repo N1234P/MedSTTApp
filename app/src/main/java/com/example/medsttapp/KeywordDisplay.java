@@ -175,7 +175,7 @@
                                          }
                                      });
                                  }
-                                 int i = 0;
+                                 int i = 0; // i
                                  while (i < 8 && i < keywordsList.size()) {
                                      int j = i;
                                      cards.get(i).setText(keywordsList.get(i));
