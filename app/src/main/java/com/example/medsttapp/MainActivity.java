@@ -15,6 +15,7 @@ import android.view.View;
 
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView sendMessage;
     private TextView messageInput;
 
-
+    private ImageView theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
         text = findViewById(R.id.userspeech);
         prompt = findViewById(R.id.prompt);
         confirm = findViewById(R.id.confirmation_button);
         reject = findViewById(R.id.reject_button);
         sendMessage = findViewById(R.id.send_message);
         messageInput = findViewById(R.id.message_input);
+
 
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override

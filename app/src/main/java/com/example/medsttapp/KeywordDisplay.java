@@ -20,6 +20,7 @@
     import java.io.InputStream;
     import java.security.Key;
     import java.util.ArrayList;
+    import java.util.HashSet;
     import java.util.List;
     import java.util.Set;
     import java.util.concurrent.CountDownLatch;
@@ -142,10 +143,17 @@
                      try {
                          System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
                          is = getAssets().open("en-pos-maxent.bin");
-                         KeyExtraction keyObj = new KeyExtraction(speech);
-                         keyObj.keyExtraction(is);
-                         keywords = keyObj.getKeyPhrases();
-                         System.out.println("KEYWORDS " + keywords);
+                         if(speech.length() > 0) {
+                             KeyExtraction keyObj = new KeyExtraction(speech);
+                             keyObj.keyExtraction(is);
+                             keywords = keyObj.getKeyPhrases();
+                             System.out.println("KEYWORDS " + keywords);
+                         }
+                         else {
+                             keywords = new HashSet<>();
+                         }
+
+
                      } catch (IOException e) {
                          e.printStackTrace();
                      }

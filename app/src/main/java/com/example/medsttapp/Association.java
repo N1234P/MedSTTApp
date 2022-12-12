@@ -21,6 +21,8 @@ public class Association extends AppCompatActivity {
 
     private ImageView associationConfirmation;
 
+    private ImageView backArrow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,15 @@ public class Association extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveData(associationKey);
+            }
+        });
+
+        backArrow = findViewById(R.id.keyBack); // arrow to go back to main page (bottom left corner)
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

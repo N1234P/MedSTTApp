@@ -108,6 +108,7 @@ public class KeyExtraction {
         restrictions.add("nobody");
         restrictions.add("try");
         restrictions.add("tried");
+        restrictions.add("like");
     }
 
 

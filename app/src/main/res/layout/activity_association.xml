@@ -7,6 +7,16 @@
     tools:context=".Association"
     android:orientation="vertical"
     android:background="@drawable/stt_otherbackground">
+    <ImageView
+        android:id="@+id/keyBack"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+
+        android:paddingTop="23.5dp"
+
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:layout_gravity="left"
+        android:scaleType="fitEnd"/>
 
     <TextView
         android:id="@+id/association_label"
@@ -17,7 +27,7 @@
         android:textSize="20dp"
         android:layout_centerInParent="true"
 
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="230dp"
         android:gravity="center"/>
 
     <LinearLayout
